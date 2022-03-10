@@ -11,7 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      
+      User.hasOne(models.Profile, {
+        primaryKey: true,
+        foreignKey: 'user_id',
+        onDelete: 'CASCADE'
+      })
     }
   }
   User.init({

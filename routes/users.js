@@ -4,8 +4,7 @@ const bcrypt = require('bcrypt');
 const { user, password } = require('pg/lib/defaults');
 require('dotenv').config()
 const saltRounds = bcrypt.genSaltSync(Number(process.env.SALT_FACTOR))
-const {User, userData, Profile} = require("../models")
-// const {userData} = require("../models")
+const {User, Profile} = require("../models")
 const jwt = require('jsonwebtoken');
 const Sequelize = require('sequelize');
 
