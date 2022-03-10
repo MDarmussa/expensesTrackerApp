@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const { user, password } = require('pg/lib/defaults');
 require('dotenv').config()
 const saltRounds = bcrypt.genSaltSync(Number(process.env.SALT_FACTOR))
-const {User, Profile} = require("../models")
+const {User, Profile, Receipt} = require("../models")
 const jwt = require('jsonwebtoken');
 const Sequelize = require('sequelize');
 
@@ -55,13 +55,16 @@ router.post('/login', async (req, res) => {
 })
 
 router.post('/profile', async (req, res) => {
-  const {type, item, date, amount, note} = req.body;
+  const {type, item, date, amount, note, receipt_photo} = req.body;
   const userdata = await Profile.create({
     type: type,
     item: item,
     date: date,
     amount: amount,
-    note: note
+    note: note,
+    receipt_photo: receipt_photo
+
+
   })
 
   res.send(userdata);
